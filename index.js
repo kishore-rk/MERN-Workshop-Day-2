@@ -2,7 +2,7 @@
 //console.log("Hello, World!");
 const express = require('express');
 const app = express();
-
+app.use(express.json())
 // get -  reading from the server
 // res - ( response ) server to client 
 // req - ( request  ) client to server
@@ -15,15 +15,18 @@ app.get('/third', thirdRoute)
 app.get('/dynamic/:rk',( req,res) => {
     const id = req.params.rk;
     if( id <= lst.length )
-    res.send("message : "+ lst[ id-1 ])
+    res.send(lst[ id-1 ])     // Since, index starts from 0
     else
     res.send("notes not found")
 })
 //lst containing various message to display upon dynamic call in the url path
-lst = [ 
-    "first message" , 
-    "second message",
-    "third message"
+lst = [
+    { "id" : 1,
+        "message" : " first message"}, 
+    { "id" : 2,
+        "message" : " second message"},
+    { "id" : 3,
+        "message" : " third message"}
 ]
 
 
